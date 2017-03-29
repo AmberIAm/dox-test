@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>多可视影视</title>
+    <meta name="page-view-size" content="1280*720">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+</head>
+<body>
+<h1>这是列表页</h1>
+<!--记忆用户上次看到的集数-->
+<div class="memo-list">
+    <a class="item-no" href="">
+        <!--<img src="images/video-list-play.png" alt=""/>-->
+        <span>第<span id="memo-num-1">3</span>张</span>
+    </a>
+    <span class="list-intro">上次看到<span id="memo-num-2">3</span>/<span>4</span></span>
+</div>
+<!--图片列表-->
+<ul id="video-list">
+    <li><a href="" onclick="test(0)">1</a></li>
+    <li><a href="" onclick="test(1)">2</a></li>
+    <li><a href="" onclick="test(2)">3</a></li>
+    <li><a href="" onclick="test(3)">4</a></li>
+</ul>
+<script>
+
+//    function getCookie(ckName)
+//    {
+//        if (document.cookie.length > 0)
+//        {
+//            ckStart = document.cookie.indexOf(ckName + "=");
+//            if(ckStart != -1) {
+//                ckStart = ckStart + ckName.length + 1;
+//                c_end = document.cookie.indexOf(";", ckStart);
+//                if(c_end == -1) c_end = document.cookie.length;
+//                return unescape(document.cookie.substring(ckStart,c_end));
+//            }
+//        }
+//        return "";
+//    }
+//    function setCookie(ckName, value, expiredays)
+//    {
+//        var exdate = new Date();
+//        exdate.setDate(exdate.getDate() + expiredays);
+//        document.cookie = ckName + "=" + escape(value)+ ((expiredays==null) ? "" : ";expires=" + exdate.toGMTString());
+//    }
+//    function checkCookie() {
+//        var memoNum = getCookie("itemNum");
+//        if (memoNum != null && memoNum != "") {
+//            memoNum1.innerText = memoNum;
+//            memoNum2.innerText = memoNum1.innerText;
+//        } else if(memoNum == null) {
+//            memoNum1.innerText = "2";
+//            memoNum2.innerText = "2";
+//        } else {
+//            memoNum1.innerText = "1";
+//            memoNum2.innerText = "1";
+//        }
+//    }
+//    checkCookie();
+
+//    for(var i = 0; i < videoList.length; i++) {
+////        alert(videoList[i].innerText);
+//        videoList[i]["onclick"] = function () { //用户点击的集数
+//            alert("2222222222222222222");
+//            itemNum = this.innerText; //读取数值
+////            setCookie("itemNum", itemNum, 7);
+////            alert(itemNum);
+//
+//            document.cookie = "str=" + itemNum;
+//            var x = document.cookie;
+//            alert(x);
+//        };
+//    }
+    var num = 0;
+    var itemNum = 1;
+    var videoList = document.getElementById("video-list").getElementsByTagName("a");
+    function test(num) {
+//        var videoList = document.getElementsByTagName("li");
+        itemNum = videoList[num].innerText;
+        alert("第几张？" + itemNum);
+        document.cookie = "strStrStr=" + itemNum;
+        var x = document.cookie;
+        alert("取得cookie" + x);
+    }
+
+    //测试this
+//    var x = 1;
+//    function test() {
+//        alert(this.x);
+//        alert(memoNum1.innerText);
+//    }
+//    test(); //1和3
+</script>
+</body>
+</html>

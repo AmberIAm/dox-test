@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>多可视影视</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta name="page-view-size" content="1280*720">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+</head>
+<body>
+<h1>这是2页面</h1>
+<div class="page-turn">
+    <ul class="page-turn-list">
+        <!--<li>${page}/${count}</li>-->
+        <li><a id="list-home-page" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">首页</a></li>
+        <li><a id="list-pre-page" pageop="up" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">上一页</a></li>
+        <li><a id="list-next-page" pageop="down" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">下一页</a></li>
+        <li><a id="list-last-page" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">末页</a></li>
+    </ul>
+</div>
+<script>
+    //获得焦点样式的方法
+    function selectStyle(x) {
+        x.style.backgroundColor= "red";
+    }
+    //失去焦点样式的方法
+    function noSelectStyle(x) {
+        x.style.backgroundColor= "#000066";
+    }
+    //默认定位焦点
+    function focalPoint(x) {
+        x.focus();
+        x.style.backgroundColor = "red";
+    }
+    window.onload = function() {
+        var homePage = document.getElementById("list-home-page");
+        var prePage = document.getElementById("list-pre-page");
+        var nextPage = document.getElementById("list-next-page");
+        var lastPage = document.getElementById("list-last-page");
+        //翻页按钮
+        function mainMenuEve(event) {
+            if (event.keyCode == 39) {  //按键向右
+                event.preventDefault();
+                homePage.focus();  //按键回至首页
+            }
+        }
+        lastPage.onkeydown = mainMenuEve;
+        //判断上一页按钮和下一页按钮是否存在
+        function existPre() {
+            return !!prePage;
+        }
+        function existNext() {
+            return !!nextPage;
+        }
+        //选择按钮
+        function clickHome() {
+            window.location.href = "index.html";
+        }
+        function clickPre() {
+            window.location.href = "index.html" + "?" + "click=" + "list-pre-page";
+        }
+        function clickNext() {
+            window.location.href = "3.html" + "?" + "click=" + "list-next-page";
+        }
+        function clickLast() {
+            window.location.href = "4.html";
+        }
+        homePage["onclick"] = clickHome;
+        lastPage["onclick"] = clickLast;
+        //商品列表首页
+        if (!existPre() && existNext()) {
+            focalPoint(nextPage);
+            nextPage["onclick"] = clickNext;
+        }
+        //商品列表末页
+        if (existPre() && !existNext()) {
+            focalPoint(prePage);
+            prePage["onclick"] = clickPre;
+        }
+        //上一页和下一页按钮同时存在
+        if(existPre() && existNext()) {
+            nextPage["onclick"] = clickNext;
+            prePage["onclick"] = clickPre;
+            //获取地址参数
+            function getValue() {
+                var url = window.location.href;
+                var tmp1 = url.split("?")[1];
+                var tmp2 = tmp1.split("=")[1];
+                if(tmp2 == "list-next-page") {
+                    nextPage.focus();
+                } else {
+                    prePage.focus();
+                }
+            }
+            getValue();
+        }
+    };
+</script>
+</body>
+</html>
