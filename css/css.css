@@ -349,10 +349,14 @@ img{border:none;}
 
 
 /*翻页by A*/
-.page-turn { position: absolute; top: 640px; left: 550px; width: 900px; }
-.page-turn-list { float: right; }
-.page-turn-list li { list-style-type: none; }
-.page-turn-list a { color: #ffffff; display: block; background-color: #000066; height: 42px; line-height: 42px; width: 150px; margin-left: 10px; }
+input {color: inherit;  font: inherit;  margin: 0;  line-height: normal; border: none;}
+html input[type="button"] { -webkit-appearance: button; cursor: pointer;}
+input::-moz-focus-inner {border: 0; padding: 0;}
+.page-count {height: 42px; line-height: 42px; width: 90px;}
+.page-turn { position: absolute; top: 640px; left: 550px; width: 900px;}
+.page-turn-list { float: right;}
+.page-turn-list li { list-style-type: none;}
+.page-turn-list input { color: #000000; display: block; background-color: #80b6da; height: 42px; line-height: 42px; width: 150px; margin-left: 10px;}
 
 /*翻页by A*/
 #video-list { position: absolute; left: 100px; top: 220px; }

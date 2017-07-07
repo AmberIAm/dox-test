@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>多可视影视</title>
+    <title>影视</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -13,90 +13,90 @@
 <h1>这是首页<span><a href="list.html">  点击进入列表页？</a></span></h1>
 <div class="page-turn">
     <ul class="page-turn-list">
-        <!--<li>${page}/${count}</li>-->
-        <!--<li><a class="page-style" href="list.html" onfocus="selectStyle(this)" onblur="noSelectStyle(this)"></a></li>-->
-        <li><a id="list-home-page" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">首页</a></li>
-        <li><a id="list-next-page" pageop="down" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">下一页</a></li>
-        <li><a id="list-last-page" href="#" onfocus="selectStyle(this)" onblur="noSelectStyle(this)">末页</a></li>
+        <li class="page-count">1/15</li>
+        <li><input id="list-home-page" value="首页" type="button" onfocus="selectStyle(this)" onblur="noSelectStyle(this)"></li>
+        <li><input id="list-pre-page" value="上一页" type="button" onfocus="selectStyle(this)" onblur="noSelectStyle(this)"></li>
+        <li><input id="list-next-page" value="下一页" type="button" onfocus="selectStyle(this)" onblur="noSelectStyle(this)"></li>
+        <li><input id="list-last-page" value="末页" type="button" onfocus="selectStyle(this)" onblur="noSelectStyle(this)"></li>
     </ul>
 </div>
 <script>
     //获得焦点样式的方法
     function selectStyle(x) {
-        x.style.backgroundColor= "red";
+        x.style.backgroundColor= "#3199e0";
     }
     //失去焦点样式的方法
     function noSelectStyle(x) {
-        x.style.backgroundColor= "#000066";
+        x.style.backgroundColor= "#80b6da";
     }
     //默认定位焦点
-    function focalPoint(x) {
-        x.focus();
-        x.style.backgroundColor = "red";
-    }
-    window.onload = function () {
-        var homePage = document.getElementById("list-home-page");
-        var prePage = document.getElementById("list-pre-page");
-        var nextPage = document.getElementById("list-next-page");
-        var lastPage = document.getElementById("list-last-page");
-        //翻页按钮
-        function mainMenuEve(event) {
-            if (event.keyCode == 39) {  //按键向右
-                event.preventDefault();
-                homePage.focus();  //按键回至首页
-            }
-        }
-        lastPage.onkeydown = mainMenuEve;
-        //判断上一页按钮和下一页按钮是否存在
-        function existPre() {
-            return !!prePage;
-        }
-        function existNext() {
-            return !!nextPage;
-        }
-        //选择按钮
-        function clickHome() {
-            window.location.href = "index.html";
-        }
-        function clickPre() {
-            window.location.href = "#" + "?" + "click=" + "list-pre-page";
-        }
-        function clickNext() {
-            window.location.href = "2.html" + "?" + "click=" + "list-next-page";
-        }
-        function clickLast() {
-            window.location.href = "4.html";
-        }
-        homePage["onclick"] = clickHome;
-        lastPage["onclick"] = clickLast;
-        //商品列表首页
-        if (!existPre() && existNext()) {
-            focalPoint(nextPage);
-            nextPage["onclick"] = clickNext;
-        }
-        //商品列表末页
-        if (existPre() && !existNext()) {
-            focalPoint(prePage);
-            prePage["onclick"] = clickPre;
-        }
-        //上一页和下一页按钮同时存在
-        if(existPre() && existNext()) {
-            nextPage["onclick"] = clickNext;
-            prePage["onclick"] = clickPre;
-            //获取地址参数
-            function getValue() {
-                var url = window.location.href;
-                var tmp1 = url.split("?")[1];
-                var tmp2 = tmp1.split("=")[1];
-                if(tmp2 == "list-next-page") {
-                    nextPage.focus();
-                } else {
-                    prePage.focus();
-                }
-            }
-            getValue();
-        }
-    };
+    // function focalPoint(x) {
+    //     x.focus();
+    //     x.style.backgroundColor = "#309ae6";
+    // }
+    // window.onload = function () {
+    //     var homePage = document.getElementById("list-home-page");
+    //     var prePage = document.getElementById("list-pre-page");
+    //     var nextPage = document.getElementById("list-next-page");
+    //     var lastPage = document.getElementById("list-last-page");
+    //     //翻页按钮
+    //     function mainMenuEve(event) {
+    //         if (event.keyCode == 39) {  //按键向右
+    //             event.preventDefault();
+    //             homePage.focus();  //按键回至首页
+    //         }
+    //     }
+    //     lastPage.onkeydown = mainMenuEve;
+    //     //判断上一页按钮和下一页按钮是否存在
+    //     function existPre() {
+    //         return !!prePage;
+    //     }
+    //     function existNext() {
+    //         return !!nextPage;
+    //     }
+    //     //选择按钮
+    //     function clickHome() {
+    //         window.location.href = "index.html";
+    //     }
+    //     function clickPre() {
+    //         window.location.href = "#" + "?" + "click=" + "list-pre-page";
+    //     }
+    //     function clickNext() {
+    //         window.location.href = "2.html" + "?" + "click=" + "list-next-page";
+    //     }
+    //     function clickLast() {
+    //         window.location.href = "4.html";
+    //     }
+    //     homePage["onclick"] = clickHome;
+    //     lastPage["onclick"] = clickLast;
+    //     //商品列表首页
+    //     if (!existPre() && existNext()) {
+    //         focalPoint(nextPage);
+    //         nextPage["onclick"] = clickNext;
+    //     }
+    //     //商品列表末页
+    //     if (existPre() && !existNext()) {
+    //         focalPoint(prePage);
+    //         prePage["onclick"] = clickPre;
+    //     }
+    //     //上一页和下一页按钮同时存在
+    //     if(existPre() && existNext()) {
+    //         nextPage["onclick"] = clickNext;
+    //         prePage["onclick"] = clickPre;
+    //         //获取地址参数
+    //         function getValue() {
+    //             var url = window.location.href;
+    //             var tmp1 = url.split("?")[1];
+    //             var tmp2 = tmp1.split("=")[1];
+    //             if(tmp2 == "list-next-page") {
+    //                 nextPage.focus();
+    //             } else {
+    //                 prePage.focus();
+    //             }
+    //         }
+    //         getValue();
+    //     }
+    // };
 </script>
 </body>
 </html>
